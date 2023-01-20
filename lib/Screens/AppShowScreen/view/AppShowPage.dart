@@ -12,13 +12,15 @@ class AppShowPage extends StatefulWidget {
 }
 
 class _AppShowPageState extends State<AppShowPage> {
+  BottomProvider? ProviderTrue;
   @override
   Widget build(BuildContext context) {
+    ProviderTrue = Provider.of<BottomProvider>(context, listen: true);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
             title: Text(
-              "${Provider.of<BottomProvider>(context, listen: true).SelectApp[Provider.of<BottomProvider>(context, listen: true).index2].name}",
+              "${ProviderTrue!.SelectApp[ProviderTrue!.index2].name}",
               style: TextStyle(color: Colors.white),
             ),
             centerTitle: true,
@@ -26,12 +28,11 @@ class _AppShowPageState extends State<AppShowPage> {
           ),
           body: Column(
             children: [
-              Provider.of<BottomProvider>(context, listen: true).progress2 ==
+              ProviderTrue!.progress2 ==
                       1.0
                   ? Container()
                   : LinearProgressIndicator(
-                      value: Provider.of<BottomProvider>(context, listen: true)
-                          .progress2,
+                      value: ProviderTrue!.progress2,
                       color: Color(0xFF2C2926),
                       backgroundColor: Colors.grey,
                     ),
@@ -39,10 +40,13 @@ class _AppShowPageState extends State<AppShowPage> {
                 child: InAppWebView(
                   initialUrlRequest: URLRequest(
                       url: Uri.parse(
-                          "${Provider.of<BottomProvider>(context, listen: true).SelectApp[Provider.of<BottomProvider>(context, listen: true).index2].url}")),
+                          "${ProviderTrue!.SelectApp[ProviderTrue!.index2].url}")),
+                  onWebViewCreated: (controller) {
+                    ProviderTrue!.ChnageController(controller);
+                  },
                   onProgressChanged: (controller, progress) {
-                    Provider.of<BottomProvider>(context, listen: false)
-                        .ChnageProgress2(progress);
+                    ProviderTrue!
+                        .ChnageProgress2(progress/100);
                   },
                 ),
               ),

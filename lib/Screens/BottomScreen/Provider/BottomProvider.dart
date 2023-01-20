@@ -82,13 +82,13 @@ class BottomProvider extends ChangeNotifier
   void ChnageProgress(prg)
   {
     progress = prg;
-    print("================>>>>>>>>>> ======= $progress");
+    // print("================>>>>>>>>>> ======= $progress");
     notifyListeners();
   }
   void ChnageProgress2(prg)
   {
     progress2 = prg;
-    print("================>>>>>>>>>> ======= $progress2");
+    // print("================ PROGESS2 CHANGE VALUE =========== >>>>> $progress2");
     notifyListeners();
   }
   void LoadUrl(value)
@@ -117,8 +117,8 @@ class BottomProvider extends ChangeNotifier
     notifyListeners();
   }
   void AddText(text) {
-    print("================================   >>>> $text");
-    print("================================   >>>>\n $BookMarkList");
+    // print("================================   >>>> $text");
+    // print("================================   >>>>\n $BookMarkList");
     Uri? uri = text;
     txtBookmarkName = TextEditingController(text: "$uri");
     notifyListeners();
@@ -148,29 +148,34 @@ class BottomProvider extends ChangeNotifier
   {
     Uri? uri = await data;
     BookMarkList.add("$uri");
-    print("================================== >>>>>>>>>>>>>>>>>>>>>>\n$BookMarkList");
+    // print("================================== >>>>>>>>>>>>>>>>>>>>>>\n$BookMarkList");
     notifyListeners();
   }
   void addbookmark() async
   {
     BookMarkList = (await ReadBookMark())!;
-    print("================================== >>>>>>>>>>>>>>>>>>>>>>\n$BookMarkList");
+    CheckList();
+    // print("================================== >>>>>>>>>>>>>>>>>>>>>>\n$BookMarkList");
     notifyListeners();
   }
   void CheckList()
   async {
-    print("====================== >>>>>>>>>>>>>>>>>>>\n$BookMarkList\n${await inAppWebViewController!.getOriginalUrl()}");
+    // print("=====================   CHECKLIST   ======================");
+    // print("====================== >>>>>>>>>>>>>>>>>>>  \n$BookMarkList\n${await inAppWebViewController!.getOriginalUrl()}");
     for(int i=0; i<BookMarkList.length; i++)
       {
         if(BookMarkList[i] == "${await inAppWebViewController!.getOriginalUrl()}")
+        // if(BookMarkList[i] == "${txtSearch.text}")
           {
             star=true;
+            break;
           }
         else
           {
             star=false;
           }
       }
+    print("===================== >>>>>>>>>>>>  $star");
     notifyListeners();
   }
   // void AddText2(text)
@@ -189,6 +194,7 @@ class BottomProvider extends ChangeNotifier
           {
             star=false;
             BookMarkList.removeAt(i);
+            break;
           }
       }
     notifyListeners();

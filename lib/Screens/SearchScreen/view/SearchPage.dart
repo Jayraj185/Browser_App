@@ -18,9 +18,10 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
-    print("================== INITSTATE =====================");
+    // print("================== INITSTATE =====================");
     Provider.of<BottomProvider>(context,listen: false).addbookmark();
     Provider.of<BottomProvider>(context,listen: false).CheckList();
+    Provider.of<BottomProvider>(context,listen: false).SearchBarCheck();
     Provider.of<BottomProvider>(context,listen: false).pullToRefreshController =
         PullToRefreshController(
           onRefresh: () async {
@@ -88,12 +89,14 @@ class _SearchPageState extends State<SearchPage> {
                           child: TextField(
                             controller: ProviderTrue!.txtSearch,
                             onChanged: (value) {
-                              print("=========== >>>>>>>>> ONCHANGE =========");
+                              // print("=========== >>>>>>>>> ONCHANGE =========");
+                              ProviderFalse!.LoadUrl(value);
                               ProviderFalse!.SearchBarCheck();
                             },
                             onSubmitted: (value) {
                               ProviderFalse!.LoadUrl(ProviderTrue!.txtSearch.text);
                               ProviderFalse!.CheckList();
+                              ProviderFalse!.SearchBarCheck();
                             },
                             decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -136,6 +139,7 @@ class _SearchPageState extends State<SearchPage> {
                                         AddBookMark(ProviderTrue!.BookMarkList);
                                         ProviderFalse!.addbookmark();
                                         ProviderFalse!.CheckList();
+                                        ProviderFalse!.SearchBarCheck();
                                         Navigator.pop(context);
                                       }
                                     else
@@ -246,7 +250,8 @@ class _SearchPageState extends State<SearchPage> {
                                 ProviderFalse!.AddText2(e);
                                 ProviderFalse!.LoadUrl2(e);
                                 ProviderFalse!.CheckList();
-                                AddBookMark(ProviderFalse!.BookMarkList);
+                                ProviderFalse!.SearchBarCheck();
+                                //AddBookMark(ProviderFalse!.BookMarkList);
                                 Navigator.pop(context);
                               },
                               child: Text("$e")),
@@ -267,9 +272,11 @@ class _SearchPageState extends State<SearchPage> {
                   initialUrlRequest: URLRequest(url: Uri.parse("https://www.google.com/")),
                   onWebViewCreated: (controller) {
                     ProviderFalse!.ChnageController(controller);
+                    ProviderFalse!.SearchBarCheck();
                   },
                   onProgressChanged: (controller, progress) {
                     ProviderFalse!.ChnageProgress(progress/100);
+                    ProviderFalse!.SearchBarCheck();
                   },
                   pullToRefreshController: ProviderTrue!.pullToRefreshController!,
                 ),
