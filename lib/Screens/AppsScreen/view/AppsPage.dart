@@ -31,7 +31,7 @@ class _AppsPageState extends State<AppsPage> {
                   child: Text(
                       "OTT Platform Apps",
                     style: TextStyle(
-                        color: Color(0xFF85D200),
+                        color: Color(0xFF2C2926),
                       fontSize: 15.sp
                     ),
                   ),
@@ -79,7 +79,7 @@ class _AppsPageState extends State<AppsPage> {
                               child: Text(
                                   "${ProviderTrue!.videoApp[index].name}",
                                 style: TextStyle(
-                                  color: Color(0xFF85D200),
+                                  color: Color(0xFF2C2926),
                                 ),
                               ),
                             )
@@ -97,7 +97,7 @@ class _AppsPageState extends State<AppsPage> {
                   child: Text(
                     "Education Apps",
                     style: TextStyle(
-                        color: Color(0xFF85D200),
+                        color: Color(0xFF2C2926),
                         fontSize: 15.sp
                     ),
                   ),
@@ -145,7 +145,7 @@ class _AppsPageState extends State<AppsPage> {
                             child: Text(
                               "${ProviderTrue!.educationApp[index].name}",
                               style: TextStyle(
-                                color: Color(0xFF85D200),
+                                color: Color(0xFF2C2926),
                               ),
                             ),
                           )
@@ -163,7 +163,7 @@ class _AppsPageState extends State<AppsPage> {
                   child: Text(
                     "Social Media Apps",
                     style: TextStyle(
-                        color: Color(0xFF85D200),
+                        color: Color(0xFF2C2926),
                         fontSize: 15.sp
                     ),
                   ),
@@ -211,7 +211,7 @@ class _AppsPageState extends State<AppsPage> {
                             child: Text(
                               "${ProviderTrue!.socialApp[index].name}",
                               style: TextStyle(
-                                color: Color(0xFF85D200),
+                                color: Color(0xFF2C2926),
                               ),
                             ),
                           )
@@ -229,7 +229,7 @@ class _AppsPageState extends State<AppsPage> {
                   child: Text(
                     "Shopping Apps",
                     style: TextStyle(
-                        color: Color(0xFF85D200),
+                        color: Color(0xFF2C2926),
                         fontSize: 15.sp
                     ),
                   ),
@@ -277,7 +277,7 @@ class _AppsPageState extends State<AppsPage> {
                             child: Text(
                               "${ProviderTrue!.shoppingApp[index].name}",
                               style: TextStyle(
-                                color: Color(0xFF85D200),
+                                color: Color(0xFF2C2926),
                               ),
                             ),
                           )
@@ -295,7 +295,7 @@ class _AppsPageState extends State<AppsPage> {
                   child: Text(
                     "News Apps",
                     style: TextStyle(
-                        color: Color(0xFF85D200),
+                        color: Color(0xFF2C2926),
                         fontSize: 15.sp
                     ),
                   ),
@@ -343,7 +343,7 @@ class _AppsPageState extends State<AppsPage> {
                             child: Text(
                               "${ProviderTrue!.newsApp[index].name}",
                               style: TextStyle(
-                                color: Color(0xFF85D200),
+                                color: Color(0xFF2C2926),
                               ),
                             ),
                           )

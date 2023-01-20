@@ -55,7 +55,13 @@ class BottomProvider extends ChangeNotifier
   List<BottomModel> SelectApp = [];
   List<String> BookMarkList = [];
   bool star=false;
+  bool searchbar = true;
   var key = GlobalKey<FormState>();
+
+
+
+
+
   //Only Function's
   void ChangeIndex(inde)
   {
@@ -93,22 +99,55 @@ class BottomProvider extends ChangeNotifier
         )
     );
   }
+  void LoadUrl2(e)
+  {
+    inAppWebViewController!.loadUrl(
+        urlRequest: URLRequest(
+            url: Uri.parse(e)
+          // url: Uri.parse("https://www.google.com/search?q=${txtSearch.text}")
+        )
+    );
+    CheckList();
+    notifyListeners();
+  }
   void ChnageFolder(value)
   {
     folder = value;
     print(folder);
     notifyListeners();
   }
-  void AddText(text)
-  {
+  void AddText(text) {
     print("================================   >>>> $text");
     print("================================   >>>>\n $BookMarkList");
-    txtBookmarkName = TextEditingController(text: "$text");
+    Uri? uri = text;
+    txtBookmarkName = TextEditingController(text: "$uri");
     notifyListeners();
   }
-  void BookMark(data)
+  void AddText2(String text)
   {
-    BookMarkList.add(data);
+    // String link = "https://www.google.com/search?q=";
+    // String url = "";
+    // print("============ >>>>>> ${text[0]}");
+    // for(int j=link.length; j<text.length; j++)
+    //   {
+    //     link = link + "a";
+    //   }
+    // print("============ >>>>>> ${link.length} &&&&&&&&& ${text.length}\n============== >>>> ${link} ");
+    // for(int i=0; i<text.length; i++)
+    //   {
+    //     if(text[i] != link[i])
+    //       {
+    //         url = url + text[i];
+    //       }
+    //   }
+    // print("================================   >>>> $url");
+    txtSearch = TextEditingController(text: "$text");
+    notifyListeners();
+  }
+  void BookMark(data) async
+  {
+    Uri? uri = await data;
+    BookMarkList.add("$uri");
     print("================================== >>>>>>>>>>>>>>>>>>>>>>\n$BookMarkList");
     notifyListeners();
   }
@@ -119,10 +158,11 @@ class BottomProvider extends ChangeNotifier
     notifyListeners();
   }
   void CheckList()
-  {
+  async {
+    print("====================== >>>>>>>>>>>>>>>>>>>\n$BookMarkList\n${await inAppWebViewController!.getOriginalUrl()}");
     for(int i=0; i<BookMarkList.length; i++)
       {
-        if(BookMarkList[i]==txtSearch.text)
+        if(BookMarkList[i] == "${await inAppWebViewController!.getOriginalUrl()}")
           {
             star=true;
           }
@@ -133,11 +173,19 @@ class BottomProvider extends ChangeNotifier
       }
     notifyListeners();
   }
+  // void AddText2(text)
+  // {
+  //   print("================================   >>>> $text");
+  //   print("================================   >>>>\n $BookMarkList");
+  //   txtSearch = TextEditingController(text: "$text");
+  //   print("================================   >>>> ${txtSearch.text}");
+  //   notifyListeners();
+  // }
   void CheckList2()
-  {
+  async {
     for(int i=0; i<BookMarkList.length; i++)
       {
-        if(BookMarkList[i]==txtSearch.text)
+        if(BookMarkList[i] == "${await inAppWebViewController!.getOriginalUrl()}")
           {
             star=false;
             BookMarkList.removeAt(i);
@@ -148,6 +196,18 @@ class BottomProvider extends ChangeNotifier
   void Value()
   {
     progress=1.0;
+    notifyListeners();
+  }
+  void SearchBarCheck()
+  {
+    if(txtSearch.text.isNotEmpty)
+      {
+        searchbar=false;
+      }
+    else
+      {
+        searchbar=true;
+      }
     notifyListeners();
   }
 }

@@ -24,9 +24,10 @@ class _BottomPageState extends State<BottomPage> {
           onTap: (index){
             ProviderFalse!.ChangeIndex(index);
           },
+          type: BottomNavigationBarType.shifting,
           currentIndex: ProviderTrue!.index,
-          unselectedItemColor: Color(0xFFCEE0AA),
-          selectedItemColor: Color(0xFF85D200),
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: Color(0xFF2C2926),
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.search,),label: "Search"),
             BottomNavigationBarItem(icon: Icon(Icons.app_registration,),label: "Apps"),

@@ -16,29 +16,38 @@ class _AppShowPageState extends State<AppShowPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("${Provider.of<BottomProvider>(context,listen: true).SelectApp[Provider.of<BottomProvider>(context,listen: true).index2].name}",style: TextStyle(color: Colors.white),),
-          centerTitle: true,
-          backgroundColor: Color(0xFF85D200),
-        ),
-        body: Column(
-          children: [
-            Provider.of<BottomProvider>(context,listen: true).progress2==1.0?Container():LinearProgressIndicator(
-              value: Provider.of<BottomProvider>(context,listen: true).progress2,
-              color: Color(0xFF85D200),
-              backgroundColor: Color(0xFFCEE0AA),
+          appBar: AppBar(
+            title: Text(
+              "${Provider.of<BottomProvider>(context, listen: true).SelectApp[Provider.of<BottomProvider>(context, listen: true).index2].name}",
+              style: TextStyle(color: Colors.white),
             ),
-            Expanded(
-              child: InAppWebView(
-                initialUrlRequest: URLRequest(url: Uri.parse("${Provider.of<BottomProvider>(context,listen: true).SelectApp[Provider.of<BottomProvider>(context,listen: true).index2].url}")),
-                onProgressChanged: (controller, progress) {
-                  Provider.of<BottomProvider>(context,listen: false).ChnageProgress2(progress);
-                },
+            centerTitle: true,
+            backgroundColor: Color(0xFF2C2926),
+          ),
+          body: Column(
+            children: [
+              Provider.of<BottomProvider>(context, listen: true).progress2 ==
+                      1.0
+                  ? Container()
+                  : LinearProgressIndicator(
+                      value: Provider.of<BottomProvider>(context, listen: true)
+                          .progress2,
+                      color: Color(0xFF2C2926),
+                      backgroundColor: Colors.grey,
+                    ),
+              Expanded(
+                child: InAppWebView(
+                  initialUrlRequest: URLRequest(
+                      url: Uri.parse(
+                          "${Provider.of<BottomProvider>(context, listen: true).SelectApp[Provider.of<BottomProvider>(context, listen: true).index2].url}")),
+                  onProgressChanged: (controller, progress) {
+                    Provider.of<BottomProvider>(context, listen: false)
+                        .ChnageProgress2(progress);
+                  },
+                ),
               ),
-            ),
-          ],
-        )
-      ),
+            ],
+          )),
     );
   }
 }
